@@ -17,13 +17,13 @@ loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
 });
 
-btnSignIn.addEventListener('click', () => {
+function SignIn() {
     validateInputIn();
-});
+}
 
-btnSignUp.addEventListener('click', () => {
+function SignUp() {
     validateInputUp();
-});
+}
 
 const setDefault = element => {
     const inputControl = element.parentElement;
@@ -88,14 +88,13 @@ const validateInputUp = () => {
     }
 
     if (isValid) {
-        var token = $('input[name="__RequestVerificationToken"]').val();
 
         $.ajax({
             type: "POST",
             headers: {
-                'RequestVerificationToken': token
+                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
             },
-            url: '/Account/Index',
+            url: '/Account/SignUp',
             data: JSON.stringify({
                 UserName: upName.value,
                 Email: upEmail.value,
@@ -116,6 +115,9 @@ const validateInputUp = () => {
                     setDefault(upEmail);
                     setDefault(upPassword);
                 }
+                else {
+                    alert(response.message);
+                }
             },
             error: function (error) {
                 alert('An error occurred:' + error.responseText);
@@ -128,42 +130,44 @@ const validateInputIn = () => {
 
     let isValid = true;
 
-    if (inEmail.value.trim() === '') {
+    if (inEmail.value.trim() == '') {
         setError(inEmail, 'Email is required');
 
         isValid = false;
     } else if (!isValidEmail(inEmail.value.trim())) {
         setError(inEmail, 'Provide a valid email address');
+
         isValid = false;
     } else {
         setSuccess(inEmail);
     }
 
-    if (inPassword.value.trim() === '') {
+    if (inPassword.value.trim() == '') {
         setError(inPassword, 'Password is required');
+
         isValid = false;
     } else if (inPassword.value.trim().length < 8 || inPassword.value.trim().length > 16) {
         setError(inPassword, 'Password must be 8-16 characters.')
+
         isValid = false;
     } else {
         setSuccess(inPassword);
     }
 
     if (isValid) {
-        var token = $('input[name="__RequestVerificationToken"]').val();
 
         $.ajax({
-            type: "POST",
+            type: 'POST',
             headers: {
-                'RequestVerificationToken': token
+                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
             },
-            url: '/Account/VerifyLogin',
+            url: '/Account/SignIn',
             data: JSON.stringify({
                 Email: inEmail.value,
                 Password: inPassword.value
             }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
             success: function (response) {
                 if (response.success) {
                     window.location.href = response.redirectUrl;

@@ -19,6 +19,7 @@
         <div class="form-container sign-up">
             <form method="post">
                 @Html.AntiForgeryToken()
+
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -33,7 +34,7 @@
                 </div>
 
                 <div class="input-control">
-                    <input type="email" placeholder="Email" id="upemail">
+                    <input type="text" placeholder="Email" id="upemail">
                     <div class="error"></div>
                 </div>
 
@@ -42,12 +43,13 @@
                     <div class="error"></div>
                 </div>
 
-                <button type="button" id="btn_signup">Sign Up</button>
+                <button type="button" id="btn_signup" onclick="SignUp()">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">
             <form method="post">
                 @Html.AntiForgeryToken()
+
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -57,15 +59,16 @@
                 </div>
                 <span>or use your email password</span>
                 <div class="input-control">
-                    <input type="email" placeholder="Email" id="inemail">
+                    <input type="text" placeholder="Email" id="inemail">
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
                     <input type="password" placeholder="Password" id="inpassword">
                     <div class="error"></div>
                 </div>
+
                 <a href="#">Forget Your Password?</a>
-                <button type="button" id="btn_signin">Sign In</button>
+                <button type="button" id="btn_signin" onclick="SignIn()">Sign In</button>
             </form>
         </div>
         <div class="toggle-container">
