@@ -1,56 +1,106 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="~/image/newspaper_icon.png"/>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <title>@ViewData["Title"] - MegaNews</title>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Trang Đọc Báo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
 </head>
 <body>
-    <header>
-       <nav class="navigation">
-           <div class="nav_left">
-               <h3 class="logo">MEGA.News</h3>
-               <div>
-                   <p>Categories</p>
-                    <ion-icon name="chevron-down-outline"></ion-icon>
-               </div>
-               <div>
-                   <p>Pages</p>
-                    <ion-icon name="chevron-down-outline"></ion-icon>
-               </div>
-               <p>Contact Us</p>
-               <p>About Us</p>
-           </div>
+    <header class="bg-light">
+        <div class="container-fluid d-flex justify-content-between align-items-center py-3">
+            <!-- Logo -->
+            <a href="/" class="navbar-brand">
+                <img src="~/image/logo.png" alt="Logo" height="40">
+            </a>
 
-           <div class="nav_right">
-               <div class="search_bar">
+            @* <!-- Menu ngang -->
+            <nav class="navbar navbar-expand-md">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/ThoiSu">Thời Sự</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/TheThao">Thể Thao</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/GiaiTri">Giải Trí</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/KinhTe">Kinh Tế</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/PhapLuat">Pháp Luật</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav> *@
 
-               </div>
+            <!-- Menu ngang -->
+            <nav class="navbar navbar-expand-md">
+                <!-- Nút toggle khi thu nhỏ -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-               <div class="user_infor">
+                <!-- Menu -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/ThoiSu">Thời Sự</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/TheThao">Thể Thao</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/GiaiTri">Giải Trí</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/KinhTe">Kinh Tế</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TheLoai/PhapLuat">Pháp Luật</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-               </div>
-               <div>
-                    <ion-icon name="bookmark-outline"></ion-icon>
-               </div>
-           </div>
-       </nav>
+
+
+            <!-- Thanh tìm kiếm và nút quản lý user -->
+            <div class="d-flex align-items-center">
+                <!-- Tìm kiếm -->
+                <form class="d-flex me-3">
+                    <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Tìm kiếm">
+                    <button class="btn btn-outline-success" type="submit">Tìm</button>
+                </form>
+
+                <!-- Quản lý user -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="~/image/user.png" alt="User Icon" style="height: 20px; width: 20px;" class="me-1">
+                        @User.Identity.Name
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="/BaiViet/Create">Đăng Bài Báo</a></li>
+                        <li><a class="dropdown-item" href="/Account/Logout">Đăng Xuất</a></li>
+                    </ul>
+                </div>
+            </div>
     </header>
+
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - MegaNews - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 - Trang Đọc Báo - Mọi quyền được bảo lưu.</p>
     </footer>
-    @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js//bootstrap.bundle.min.js"></script>
 </body>
 </html>

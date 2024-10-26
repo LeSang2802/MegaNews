@@ -1,19 +1,137 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
-:root {
-    --red: #FC4308;
-    --border-radius: 12px;
-}
-
-* {
+/* Reset m?c ??nh */
+body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
 }
 
-html{
-    padding: 20px 100px;
+/* ??nh d?ng body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    padding-top: 70px; /* ?? tránh header che n?i dung */
 }
 
+/* Header */
+header {
+    box-shadow: 0 4px 2px -2px gray;
+}
 
+.navbar-nav .nav-item .nav-link {
+    color: #333;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: #007bff;
+        background-color: rgba(0, 123, 255, 0.1);
+        border-radius: 5px;
+    }
+
+form input[type="search"] {
+    width: 200px;
+}
+
+.btn-outline-success {
+    color: #512da8;
+    border-color: #512da8;
+}
+
+    .btn-outline-success:hover {
+        background-color: #512da8x;
+        color: white;
+    }
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* Jumbotron */
+.jumbotron {
+    /*background-image: url('~/images/background.jpg');*/
+    background-size: cover;
+    background-position: center;
+    color: white;
+    background-color: #008800;
+}
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: #512da8 !important;
+    ;
+}
+
+/* Card - Bài vi?t */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Nút ??c ti?p */
+.btn-primary {
+    background-color: #512da8;
+    border-color: #512da8;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+/* Button xem thêm */
+.btn-outline-secondary {
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+    footer p {
+        margin: 0;
+    }
+
+
+@media (max-width: 767.98px) {
+    .navbar-nav {
+        display: block; /* Hi?n th? menu d?c */
+        width: 100%;
+    }
+
+        .navbar-nav .nav-item {
+            margin-bottom: 10px; /* Cách ??u các m?c menu */
+        }
+
+    .navbar-toggler {
+        display: block; /* Hi?n th? nút toggle */
+    }
+    /* ??i màu cho nút toggle và bi?u t??ng */
+    .navbar-toggler {
+        border-color: #808080; /* Màu vi?n c?a nút toggle */
+    }
+
+    .navbar-toggler-icon {
+        background-color: #808080; /* Màu c?a thanh ngang */
+    }
+}

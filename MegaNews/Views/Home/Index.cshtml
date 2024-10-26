@@ -1,8 +1,73 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang Chủ";
+    Layout = "_Layout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="jumbotron text-center bg-primary text-white py-5">
+    <h1>Chào mừng đến với Trang Đọc Báo</h1>
+    <p>Cập nhật tin tức nhanh chóng, chính xác mỗi ngày.</p>
+</div>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Bài viết mới nhất</h2>
+
+    <div class="row">
+        @foreach (var article in Model) // Duyệt qua từng bài viết
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@Url.Content(article.ImageUrl)" class="card-img-top" alt="@article.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@article.Title</h5>
+                        <p class="card-text">@article.Summary</p> <!-- Sửa từ ShortDescription thành Summary -->
+                        <a href="@Url.Action("Details", "Articles", new { id = article.Id })" class="btn btn-primary">Đọc tiếp</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @* <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="~/image/ThoiSu1.jpg" class="card-img-top" alt="Bài viết 1">
+                <div class="card-body">
+                    <h5 class="card-title">Đề xuất nối dài công viên bờ sông Sài Gòn</h5>
+                    <p class="card-text">Đoạn bờ sông Sài Gòn...</p>
+                    <a href="/TheLoai/ThoiSu" class="btn btn-primary">Đọc tiếp</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="~/images/news2.jpg" class="card-img-top" alt="Bài viết 2">
+                <div class="card-body">
+                    <h5 class="card-title">Tiêu đề bài viết 2</h5>
+                    <p class="card-text">Một đoạn ngắn giới thiệu về bài viết này...</p>
+                    <a href="/TheLoai/TheThao" class="btn btn-primary">Đọc tiếp</a>
+                </div>
+            </div>
+        </div> *@
+
+        @* <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="~/images/news3.jpg" class="card-img-top" alt="Bài viết 3">
+                <div class="card-body">
+                    <h5 class="card-title">Tiêu đề bài viết 3</h5>
+                    <p class="card-text">Một đoạn ngắn giới thiệu về bài viết này...</p>
+                    <a href="/TheLoai/GiaiTri" class="btn btn-primary">Đọc tiếp</a>
+                </div>
+            </div>
+        </div>
+    </div> *@
+
+
+
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a href="/TheLoai" class="btn btn-outline-secondary">Xem thêm bài viết</a>
+        </div>
+    </div>
 </div>

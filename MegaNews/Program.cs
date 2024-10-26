@@ -44,6 +44,13 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Kh?i t?o d? li?u
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    DataSeeder.Seed(context); // G?i ph??ng th?c Seed
+}
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Index}/{id?}");
