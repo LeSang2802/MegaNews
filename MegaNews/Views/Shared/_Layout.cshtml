@@ -50,11 +50,23 @@
                     <input type="text" name="text_search" placeholder="Search Anything" id="text-search">
                     <ion-icon name="search-outline"></ion-icon>
                 </div>
-                <div class="navigation__right--user">
-                    <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
-                    Đăng Nhập
-                    <ion-icon name="chevron-down-outline"></ion-icon>
-                </div>
+
+                @if (ViewBag.UserName != null)
+                {
+                    <div class="navigation__right--user">
+                        <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
+                        @ViewBag.UserName
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </div>
+                }
+                else
+                {
+                    <div class="navigation__right--user">
+                        <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
+                        Đăng Nhập
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </div>
+                }
                 <ion-icon name="bookmark-outline" id="book_mark"></ion-icon>
             </div>
         </nav>

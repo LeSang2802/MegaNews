@@ -11,7 +11,6 @@ namespace MegaNews.Controllers
         private readonly ApplicationDbContext _dbContext;
         private PasswordHasher<AccountModel> _passwordHasher;
 
-        private const string Session_Cookie_Email = "Email";
         private const string Session_Cookie_UserName = "UserName";
         private const string Session_LoggedIn = "LoggedIn";
 

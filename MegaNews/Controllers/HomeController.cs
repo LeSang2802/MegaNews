@@ -12,6 +12,7 @@ namespace MegaNews.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context; // Khai báo ApplicationDbContext
         private const string Session_LoggedIn = "LoggedIn";
+        private const string Session_Cookie_UserName = "UserName";
 
         //Check Session Login exist ?
         [HttpGet]
@@ -38,6 +39,14 @@ namespace MegaNews.Controllers
 
         public IActionResult Index()
         {
+            //Get userName
+            var userName = HttpContext.Session.GetString(Session_Cookie_UserName);
+            if (!string.IsNullOrEmpty(userName))
+            {
+                ViewBag.UserName = userName; // pass UserName to View
+            }
+
+
             // Lấy 3 bài viết mới nhất
             var latestArticles = _context.tblArticle
                                           .OrderByDescending(a => a.PublishedDate)
