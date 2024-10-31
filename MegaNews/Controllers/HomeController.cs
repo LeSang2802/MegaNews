@@ -1,43 +1,9 @@
-﻿//using MegaNews.Models;
-//using Microsoft.AspNetCore.Mvc;
-//using System.Diagnostics;
-
-//namespace MegaNews.Controllers
-//{
-//    public class HomeController : Controller
-//    {
-//        private readonly ILogger<HomeController> _logger;
-
-//        public HomeController(ILogger<HomeController> logger)
-//        {
-//            _logger = logger;
-
-//        }
-
-//        public IActionResult Index()
-//        {
-//            return View();
-//        }
-
-//        public IActionResult Privacy()
-//        {
-//            return View();
-//        }
-
-//        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-//        public IActionResult Error()
-//        {
-//            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-//        }
-//    }
-//}
-
-using MegaNews.Data; // Nhập không gian tên cho ApplicationDbContext
+﻿using MegaNews.Data;
 using MegaNews.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using System.Linq; // Để sử dụng LINQ
+using System.Linq;
 
 namespace MegaNews.Controllers
 {
@@ -45,6 +11,23 @@ namespace MegaNews.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context; // Khai báo ApplicationDbContext
+        private const string Session_LoggedIn = "LoggedIn";
+
+        //Check Session Login exist ?
+        [HttpGet]
+        public JsonResult CheckLoginStatus()
+        {
+            var isLoggedIn = HttpContext.Session.GetString(Session_LoggedIn);
+
+            if (string.IsNullOrEmpty(isLoggedIn))
+            {
+                return Json(new { loggedIn = false });
+            }
+            else
+            {
+                return Json(new { loggedIn = true });
+            }
+        }
 
         // Sửa constructor để nhận ApplicationDbContext
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)

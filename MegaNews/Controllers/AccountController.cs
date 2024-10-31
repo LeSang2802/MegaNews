@@ -13,7 +13,7 @@ namespace MegaNews.Controllers
 
         private const string Session_Cookie_Email = "Email";
         private const string Session_Cookie_UserName = "UserName";
-
+        private const string Session_LoggedIn = "LoggedIn";
 
         public AccountController(ApplicationDbContext dbContext)
         {
@@ -62,9 +62,9 @@ namespace MegaNews.Controllers
                 if (result == PasswordVerificationResult.Success)
                 {
                     if (account.Role == "User")
-                    {
-                        HttpContext.Session.SetString(Session_Cookie_Email, account.Email);
+                    { 
                         HttpContext.Session.SetString(Session_Cookie_UserName, account.UserName);
+                        HttpContext.Session.SetString(Session_LoggedIn, "true");
                         return Json(new { success = true, redirectUrl = Url.Action("Index", "Home") });
                     }
                     else
