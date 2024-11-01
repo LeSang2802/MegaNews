@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEGANews.com</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="icon" type="image/x-icon" href="~/image/newspaper_icon.png"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" type="image/x-icon" href="~/image/newspaper_icon.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -24,7 +24,7 @@
         <h4>Vui lòng đăng nhập tài khoản MEGA.News để có thể sử dụng các các dịch vụ khác của chúng tôi.</h4>
         <div>
             <a class="btn_signin" asp-controller="Account" asp-action="Index">Đăng Ký</a>
-            <a class="btn_signup"asp-controller="Account" asp-action="Index">Đăng Nhập</a>
+            <a class="btn_signup" asp-controller="Account" asp-action="Index">Đăng Nhập</a>
         </div>
     </div>
 
@@ -32,13 +32,15 @@
         <nav class="navigation">
             <div class="navigation__left">
                 <div class="logo">
-                    MEGA.News
+                    <a href="@Url.Action("Index", "Home")" style="text-decoration: none; color: inherit;">MEGA.News</a>
                 </div>
 
-                <div class="category">Categories
+                <div class="category">
+                    Categories
                     <ion-icon name="chevron-down-outline"></ion-icon>
                 </div>
-                <di class="page">Page
+                <di class="page">
+                    Page
                     <ion-icon name="chevron-down-outline"></ion-icon>
                 </di>
                 <div class="contactus">Contact Us</div>
@@ -56,7 +58,25 @@
                     <div class="navigation__right--user">
                         <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
                         @ViewBag.UserName
-                        <ion-icon name="chevron-down-outline"></ion-icon>
+                        @* <ion-icon name="chevron-down-outline"></ion-icon> *@
+                        <!-- Toggle checkbox -->
+                        <input type="checkbox" id="dropdown-toggle">
+                        <label for="dropdown-toggle">
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </label>
+
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu">
+                            <a href="/Article/Create">Thêm bài báo</a>
+                            <a href="/Article/Edit">Sửa bài báo</a>
+                            <a href="/Article/Delete">Xóa bài báo</a>
+                            @* <a href="/Account/Logout">Đăng xuất</a> *@
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Đăng xuất</a>
+                        </div>
+                        <!-- Form đăng xuất ẩn -->
+                        <form id="logoutForm" asp-controller="Home" asp-action="Logout" method="post" style="display: none;">
+                            @Html.AntiForgeryToken()
+                        </form>
                     </div>
                 }
                 else

@@ -102,6 +102,7 @@ html{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /*  */
 }
 
 .navigation > div{
@@ -152,8 +153,50 @@ html{
     background-color: var(--gray);
 }
 
-.navigation__right--user{
+.navigation__right--user {
     gap: 10px;
+    position: relative;/***/
+    display: inline-block;
+}
+
+/*Dropdown menu*/
+#dropdown-toggle {
+    display: none; 
+}
+
+
+label[for="dropdown-toggle"] {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+    .dropdown-menu a {
+        color: black;
+        padding: 10px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+
+/* Hi?n th? menu khi checkbox ???c ch?n */
+#dropdown-toggle:checked + label + .dropdown-menu {
+    display: block;
 }
 
 .navigation__right--user > img{
@@ -433,4 +476,39 @@ footer{
     margin-top: 15px;
     grid-template-columns: repeat(3,1fr);
     gap: 10px;
+}
+/*--Responsive header-*/
+@media (max-width: 768px) {
+    .navigation {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+    .navigation__left {
+        margin-bottom: 10px; 
+    }
+
+    .navigation__right {
+        width: 100%; 
+        justify-content: space-between; 
+    }
+}
+
+/*--Responsive footer-*/
+@media (max-width: 768px) {
+    footer {
+        grid-template-columns: 1fr;
+    }
+
+    .footer__left, .footer__right {
+        flex-direction: column; 
+    }
+
+    .footer__left--row1 {
+        grid-template-columns: 1fr; 
+    }
+
+    .footer__right--col2 > .col-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

@@ -57,6 +57,30 @@ namespace MegaNews.Controllers
             return View(latestArticles);
         }
 
+        // GET: Article/Details/5
+        public async Task<IActionResult> Details(int id)
+        {
+            var article = await _context.tblArticle.FindAsync(id);
+            if (article == null)
+            {
+                return NotFound();
+            }
+            return View(article);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Logout()
+        {
+            // Xóa thông tin phiên làm việc
+            HttpContext.Session.Remove(Session_LoggedIn);
+            HttpContext.Session.Remove(Session_Cookie_UserName);
+
+            // Chuyển hướng đến trang chính
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Privacy()
         {
             return View();

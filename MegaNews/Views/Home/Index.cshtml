@@ -15,7 +15,18 @@
                     <div class="card-body">
                         <h5 class="card-title">@article.Title</h5>
                         <p class="card-text">@article.Summary</p> <!-- Sửa từ ShortDescription thành Summary -->
-                        <a href="@Url.Action("Details", "Articles", new { id = article.Id })" class="btn btn-primary">Đọc tiếp</a>
+                        <a href="@Url.Action("Details", "Home", new { id = article.Id })" class="btn btn-primary">Đọc tiếp</a>
+
+                        @* Kiểm tra người dùng đã đăng nhập và hiển thị icon lưu *@
+                        @if (ViewBag.UserName != null)
+                        {
+                            <div class="save-action mt-2">
+                                <!-- Icon lưu -->
+                                <a href="@Url.Action("Save", "Articles", new { id = article.Id })" class="btn btn-sm btn-outline-success" title="Lưu">
+                                    <ion-icon name="bookmark-outline"></ion-icon>
+                                </a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

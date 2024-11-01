@@ -1,0 +1,21 @@
+﻿@* @model MegaNews.Models.ArticleModel *@
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.Title;
+}
+
+<link rel="stylesheet" href="~/css/details.css" />
+
+<div class="container">
+    <h1>@Model.Title</h1>
+    <p><strong>Tác giả:</strong> @Model.Author</p>
+    <p><strong>Ngày xuất bản:</strong> @Model.PublishedDate.ToString("dd/MM/yyyy")</p>
+    <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Title" class="img-fluid" />
+    <hr />
+    <h3>Nội dung bài viết:</h3>
+    @* <p>@Html.Raw(Model.Content)</p> *@
+    <p>@Html.Raw(Model.Content.Replace("\r\n", "<br />"))</p>
+
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay lại danh sách bài viết</a>
+</div>
