@@ -68,8 +68,6 @@
     display: none;
     max-width: 60px;
     max-height: 60px;
-    object-fit: contain;
-    mix-blend-mode: color-burn;
 }
 
 .feild_avatar--layout > .file-label{

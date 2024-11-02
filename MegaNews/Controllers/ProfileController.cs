@@ -10,16 +10,19 @@ namespace MegaNews.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Edit()
         {
             return View(); 
         }
 
+        [HttpGet]
         public IActionResult SendPost()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Posts()
         {
             return View();
