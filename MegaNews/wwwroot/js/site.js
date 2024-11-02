@@ -2,11 +2,11 @@
 const nextButton = document.querySelector('.btn-next');
 const sliderWrapper = document.querySelector('.slider-wrapper');
 const cards = document.querySelectorAll('.slider-card');
-const layoutUser = document.querySelector('.navigation__right--user');
+const layoutUser = document.getElementById('user_require');
+const bookmark_nav = document.getElementById('bookmark_require');
 const popup = document.getElementById('popup');
 const overlay = document.getElementById('overlay');
 const closePopup = document.getElementById('close_popup');
-const bookMark = document.getElementById('book_mark');
 
 /*Popup SignIn - SignUp*/
 
@@ -22,40 +22,16 @@ function HidePopup() {
     document.body.classList.remove('no-scroll');
 }
 
-
 layoutUser.addEventListener('click', () => {
-    $.ajax({
-        url: '/Home/CheckLoginStatus',
-        method: 'GET',
-        success: function (response) {
-            if (!response.loggedIn) {
-                ShowPopup();
-            }
-        },
-        error: function (error) {
-            alert('An error occurred:' + error.responseText);
-        }
-    });
+    ShowPopup();
+});
+
+bookmark_nav.addEventListener('click', () => {
+    ShowPopup();
 });
 
 closePopup.addEventListener('click', () => {
     HidePopup();
-});
-
-
-bookMark.addEventListener('click', () => {
-    $.ajax({
-        url: '/Home/CheckLoginStatus',
-        method: 'GET',
-        success: function (response) {
-            if (!response.loggedIn) {
-                ShowPopup();
-            }
-        },
-        error: function (error) {
-            alert('An error occurred:' + error.responseText);
-        }
-    });
 });
 
 

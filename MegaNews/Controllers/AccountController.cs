@@ -81,5 +81,15 @@ namespace MegaNews.Controllers
                 return Json(new { success = false, message = "Account doesn't exist" });
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+
+            // Chuyển hướng đến trang chính
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

@@ -1,4 +1,6 @@
 using MegaNews.Data;
+using MegaNews.Middleware;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,14 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+
+//Secure
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+});
+
 //Identity
 builder.Services.AddIdentity<IdentityUser,IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -38,6 +48,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseSession();
+app.UseMiddleware<AuthMiddleware>(); //Use Middleware
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -53,6 +64,6 @@ using (var scope = app.Services.CreateScope())
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Profile}/{action=Marked}/{id?}");
 
 app.Run();

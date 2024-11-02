@@ -10,24 +10,24 @@ namespace MegaNews.Models
 
         [Required]
         [StringLength(200)]
-        public string Title { get; set; }
+        public required string Title { get; set; }
 
         [Required]
-        public string Content { get; set; }
+        public required string Content { get; set; }
 
         [StringLength(500)]
-        public string? Summary { get; set; }  // Giới thiệu ngắn gọn
+        public string? Summary { get; set; }
 
         [StringLength(100)]
-        public string? Category { get; set; } // Ví dụ: Thời Sự, Thể Thao, Giải Trí...
+        public string? Category { get; set; }
 
         [StringLength(255)]
-        public string? ImageUrl { get; set; } // Đường dẫn ảnh minh họa
+        public string? ImageUrl { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime PublishedDate { get; set; }
 
         [Required]
-        public string Author { get; set; } // Tác giả bài viết
+        public required string Author { get; set; }
     }
 }

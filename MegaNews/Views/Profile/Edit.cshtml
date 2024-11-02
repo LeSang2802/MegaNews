@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@section Styles{
+    <link href="~/css/profile_edit.css" rel="stylesheet" />
+}
+
+<div class="editprofile__container">
+    <div class="infor_personal">
+        <div class="feild__fullname">
+            <h5>FullName</h5>
+            <input type="text" name="fullname" id="fullname" />
+        </div>
+        <div class="feild_email">
+            <h5>Email</h5>
+            <input type="email" name="email" id="email" />
+        </div>
+        <div class="feild_username">
+            <h5>User Name</h5>
+            <input type="text" name="username" id="username" />
+        </div>
+        <div class="feild_avatar">
+            <h5>Add Image</h5>
+            <div class="feild_avatar--layout" >
+                <img id="imagePreview" src="" alt="Image Preview"/>
+                <p>Drop Image Here, Paste Or</p>
+                <input type="file" id="avatar" accept="image/*"/>
+                <label for="avatar" class="file-label">
+                    <ion-icon name="add-outline"></ion-icon>
+                    Select
+                </label>
+            </div>
+        </div>
+
+        <div class="feild_changepass">
+            <h5>Change Password</h5>
+            <input type="password" name="oldpassword" placeholder="Old Password" />
+            <input type="password" name="newpassword" placeholder="New Password" />
+        </div>
+    </div>
+
+    <div class="btn_layout">
+        <div id="btn_save">
+            <ion-icon name="save-outline"></ion-icon>
+            Save
+        </div>
+
+        <div id="btn_change">
+            <ion-icon name="sync-outline"></ion-icon>
+            Change
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/profile.js"></script>
+}

@@ -11,24 +11,8 @@ namespace MegaNews.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context; // Khai báo ApplicationDbContext
-        private const string Session_LoggedIn = "LoggedIn";
-        private const string Session_Cookie_UserName = "UserName";
 
-        //Check Session Login exist ?
-        [HttpGet]
-        public JsonResult CheckLoginStatus()
-        {
-            var isLoggedIn = HttpContext.Session.GetString(Session_LoggedIn);
 
-            if (string.IsNullOrEmpty(isLoggedIn))
-            {
-                return Json(new { loggedIn = false });
-            }
-            else
-            {
-                return Json(new { loggedIn = true });
-            }
-        }
 
         // Sửa constructor để nhận ApplicationDbContext
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
@@ -39,14 +23,6 @@ namespace MegaNews.Controllers
 
         public IActionResult Index()
         {
-            //Get userName
-            var userName = HttpContext.Session.GetString(Session_Cookie_UserName);
-            if (!string.IsNullOrEmpty(userName))
-            {
-                ViewBag.UserName = userName; // pass UserName to View
-            }
-
-
             // Lấy 3 bài viết mới nhất
             var latestArticles = _context.tblArticle
                                           .OrderByDescending(a => a.PublishedDate)
@@ -66,19 +42,6 @@ namespace MegaNews.Controllers
                 return NotFound();
             }
             return View(article);
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Logout()
-        {
-            // Xóa thông tin phiên làm việc
-            HttpContext.Session.Remove(Session_LoggedIn);
-            HttpContext.Session.Remove(Session_Cookie_UserName);
-
-            // Chuyển hướng đến trang chính
-            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Privacy()

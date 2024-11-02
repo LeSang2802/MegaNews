@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\profile.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\profile.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\profile_edit.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\image\newspaper_icon.png" />
+    <None Include="wwwroot\js\profile.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,10 +31,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\ContactUs\" />
   </ItemGroup>
 
 </Project>

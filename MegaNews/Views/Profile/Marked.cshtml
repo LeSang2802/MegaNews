@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@section Styles{
+    <link href="~/css/profile.css" rel="stylesheet" />
+}
+
+<div class="profile__heading">
+    <div class="profile__heading-user">
+        <img src="~/image/user-avatar.svg" alt="User Avatar" />
+        UserName
+    </div>
+
+    <div class="profile__heading--page">
+        <a class="mardked" asp-controller="Profile" asp-action="Index">Marked</a>
+        <a class="sendpost" asp-controller="Profile" asp-action="SendPost">Send Post</a>
+        <a class="post" asp-controller="Profile" asp-action="Posts">Posts</a>
+    </div>
+
+    <a class="profile__heading--edit" asp-controller="Profile" asp-action="Edit">
+        <i class="fa-solid fa-user-pen"></i>
+        Edit Profile
+    </a>
+</div>
+
