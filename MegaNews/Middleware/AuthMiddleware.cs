@@ -1,4 +1,6 @@
-﻿namespace MegaNews.Middleware
+﻿using System.Security.Claims;
+
+namespace MegaNews.Middleware
 {
     public class AuthMiddleware
     {
@@ -12,8 +14,10 @@
         public async Task InvokeAsync(HttpContext httpContext)
         {
             var isLoggedIn = httpContext.Session.GetString(Session_LoggedIn) != null;
+            var username = httpContext.User.FindFirstValue(ClaimTypes.Name);
 
             httpContext.Items[Session_LoggedIn] = isLoggedIn;
+            httpContext.Items["username"] = username;
 
             await _requestDelegate(httpContext);
         }

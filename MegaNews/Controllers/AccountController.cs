@@ -1,8 +1,11 @@
 ﻿using MegaNews.Data;
 using MegaNews.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace MegaNews.Controllers
 {
@@ -11,7 +14,6 @@ namespace MegaNews.Controllers
         private readonly ApplicationDbContext _dbContext;
         private PasswordHasher<AccountModel> _passwordHasher;
 
-        private const string Session_Cookie_UserName = "UserName";
         private const string Session_LoggedIn = "LoggedIn";
 
         public AccountController(ApplicationDbContext dbContext)
@@ -61,9 +63,28 @@ namespace MegaNews.Controllers
                 if (result == PasswordVerificationResult.Success)
                 {
                     if (account.Role == "User")
-                    { 
-                        HttpContext.Session.SetString(Session_Cookie_UserName, account.UserName);
+                    {
+                        //Create session to report successful login status
                         HttpContext.Session.SetString(Session_LoggedIn, "true");
+
+                        //Create Claims get information User
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, account.UserName),
+                            new Claim(ClaimTypes.Email, account.Email)
+                        };
+
+                        //Create ClaimsIdentity and ClaimsPrincipal
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, new AuthenticationProperties
+                        {
+                            IsPersistent = true, 
+                            ExpiresUtc = DateTime.UtcNow.AddMinutes(30)
+                        });
+
+
                         return Json(new { success = true, redirectUrl = Url.Action("Index", "Home") });
                     }
                     else
@@ -84,8 +105,12 @@ namespace MegaNews.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            //Delete Cookies storages Claims
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            //Delete All Session
             HttpContext.Session.Clear();
 
             // Chuyển hướng đến trang chính

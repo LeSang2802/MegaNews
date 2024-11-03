@@ -7,17 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\profile.js" />
+    <Content Remove="wwwroot\js\editprofile.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\js\profile.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\profile_edit.css" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\image\newspaper_icon.png" />
-    <None Include="wwwroot\js\profile.js" />
+    <None Include="wwwroot\js\editprofile.js" />
   </ItemGroup>
 
   <ItemGroup>

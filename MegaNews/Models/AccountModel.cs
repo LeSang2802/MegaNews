@@ -12,6 +12,8 @@ namespace MegaNews.Models
 
         [Required]
         public required string UserName { get; set; }
+
+        public string? ImageUrl { get; set; }
         
         public string? FirstName { get; set; }
 

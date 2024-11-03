@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -12,13 +11,13 @@
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
-        @RenderSection("Styles", required: false);
+        @RenderSection("Styles", required: false)
     </head>
     <body>
         <div class="overlay" id="overlay"></div>
 
         <div class="popup" id="popup">
-            <ion-icon name="close-circle-outline" id="close_popup"></ion-icon>
+            <ion-icon name="close-circle-outline" onclick="HidePopup()"></ion-icon>
             <h2>MEGA.News</h2>
             <img src="~/image/welcome-back.png" alt="Welcome Back" />
             <h4>Vui lòng đăng nhập tài khoản MEGA.News để có thể sử dụng các các dịch vụ khác của chúng tôi.</h4>
@@ -53,21 +52,19 @@
                         <ion-icon name="search-outline"></ion-icon>
                     </div>
 
-                    @if ((bool?)Context.Items["IsLoggedIn"] == true)
+                    @if ((bool?)Context.Items["LoggedIn"] == true)
                     {
                         <div class="navigation__right--user">
                             <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
-                            @Context.Items["UserName"]
-                            @* <ion-icon name="chevron-down-outline"></ion-icon> *@
-                            <!-- Toggle checkbox -->
+                            @Context.Items["username"]
                             <input type="checkbox" id="dropdown-toggle">
                             <label for="dropdown-toggle">
                                 <ion-icon name="chevron-down-outline"></ion-icon>
                             </label>
 
                             <!-- Dropdown menu -->
-                            <div class="dropdown-menu">
-                                <a asp-controller="Profile" asp-action="Index">Hồ Sơ Người Dùng</a>
+                            <div class="dropdown-menu" style="z-index: 10;">
+                                <a asp-controller="Profile" asp-action="Marked">Hồ Sơ Người Dùng</a>
                                 <a href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Đăng xuất</a>
                             </div>
                             <!-- Form đăng xuất ẩn -->
@@ -79,12 +76,12 @@
                     }
                     else
                     {
-                        <div class="navigation__right--user" id="user_require">
+                        <div class="navigation__right--user" onclick="ShowPopup()">
                             <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
                             Đăng Nhập
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </div>
-                        <ion-icon name="bookmark-outline" id="bookmark_require"></ion-icon>
+                        <ion-icon name="bookmark-outline" onclick="ShowPopup()"></ion-icon>
                     }
                 </div>
             </nav>
@@ -202,7 +199,7 @@
                     </div>
                     <div class="col-content">
                         <h4>Nguyen Tuan</h4>
-                        <p>How nice does this look 😍 I feel it should be delicious, thank you                    </p>
+                        <p>How nice does this look 😍 I feel it should be delicious, thank you</p>
                     </div>
                     <div class="col-content">
                         <h4>Le Sang</h4>
@@ -241,6 +238,6 @@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false);
+        @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>

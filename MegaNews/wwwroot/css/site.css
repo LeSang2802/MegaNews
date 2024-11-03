@@ -277,7 +277,7 @@ header > .categoriespost > ion-icon{
 }
 
 .slider-card:nth-child(2) {
-    background-image: url('../image/vanhoa.png');
+    background-image: url('../image/news_post.jfif');
     background-position: center;
     background-size: cover;
 }
@@ -295,7 +295,7 @@ header > .categoriespost > ion-icon{
 }
 
 .slider-card:nth-child(5) {
-    background-image: url('../image/vanhoa.png');
+    background-image: url('../image/weather_post.svg');
     background-position: center;
     background-size: cover;
 }
