@@ -1,243 +1,245 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MEGANews.com</title>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="icon" type="image/x-icon" href="~/image/newspaper_icon.png" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
-        @RenderSection("Styles", required: false)
-    </head>
-    <body>
-        <div class="overlay" id="overlay"></div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGANews.com</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" type="image/x-icon" href="~/image/newspaper_icon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
 
-        <div class="popup" id="popup">
-            <ion-icon name="close-circle-outline" onclick="HidePopup()"></ion-icon>
-            <h2>MEGA.News</h2>
-            <img src="~/image/welcome-back.png" alt="Welcome Back" />
-            <h4>Vui lòng đăng nhập tài khoản MEGA.News để có thể sử dụng các các dịch vụ khác của chúng tôi.</h4>
-            <div>
-                <a class="btn_signin" asp-controller="Account" asp-action="Index">Đăng Ký</a>
-                <a class="btn_signup" asp-controller="Account" asp-action="Index">Đăng Nhập</a>
-            </div>
+    <div class="popup" id="popup">
+        <ion-icon name="close-circle-outline" onclick="HidePopup()"></ion-icon>
+        <h2>MEGA.News</h2>
+        <img src="~/image/welcome-back.png" alt="Welcome Back" />
+        <h4>Vui lòng đăng nhập tài khoản MEGA.News để có thể sử dụng các các dịch vụ khác của chúng tôi.</h4>
+        <div>
+            <a class="btn_signin" asp-controller="Account" asp-action="Index">Đăng Ký</a>
+            <a class="btn_signup" asp-controller="Account" asp-action="Index">Đăng Nhập</a>
         </div>
+    </div>
 
-        <header class="header">
-            <nav class="navigation">
-                <div class="navigation__left">
-                    <div class="logo">
-                        <a href="@Url.Action("Index", "Home")" style="text-decoration: none; color: inherit;">MEGA.News</a>
-                    </div>
-
-                    <div class="category">
-                        Categories
-                        <ion-icon name="chevron-down-outline"></ion-icon>
-                    </div>
-                    <di class="page">
-                        Page
-                        <ion-icon name="chevron-down-outline"></ion-icon>
-                    </di>
-                    <div class="contactus">Contact Us</div>
-                    <div class="aboutus">About Us</div>
+    <header class="header">
+        <nav class="navigation">
+            <div class="navigation__left">
+                <div class="logo">
+                    <a href="@Url.Action("Index", "Home")" style="text-decoration: none; color: inherit;">MEGA.News</a>
                 </div>
-                <div class="navigation__right">
-                    <div class="navigation__right--searchbar">
-                        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-                        <input type="text" name="text_search" placeholder="Search Anything" id="text-search">
-                        <ion-icon name="search-outline" id="btn_search"></ion-icon>
-                    </div>
 
-                    @if ((bool?)Context.Items["LoggedIn"] == true)
-                    {
-                        <div class="navigation__right--user">
-                            <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
-                            @Context.Items["username"]
-                            <input type="checkbox" id="dropdown-toggle">
-                            <label for="dropdown-toggle">
-                                <ion-icon name="chevron-down-outline"></ion-icon>
-                            </label>
+                <div class="category">
+                    Categories
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </div>
+                <di class="page">
+                    Page
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </di>
+                <div class="contactus">Contact Us</div>
+                <div class="aboutus">About Us</div>
+            </div>
+            <div class="navigation__right">
+                <div class="navigation__right--searchbar">
+                    <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+                    <input type="text" name="text_search" placeholder="Search Anything" id="text-search">
+                    <ion-icon name="search-outline" id="btn_search"></ion-icon>
+                </div>
 
-                            <!-- Dropdown menu -->
-                            <div class="dropdown-menu" style="z-index: 10;">
-                                <a asp-controller="Profile" asp-action="Marked">Hồ Sơ Người Dùng</a>
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Đăng xuất</a>
-                            </div>
-                            <!-- Form đăng xuất ẩn -->
-                            <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" style="display: none;">
-                                @Html.AntiForgeryToken()
-                            </form>
-                        </div>
-                        <ion-icon name="bookmark-outline" id="book_mark_login"></ion-icon>
-                    }
-                    else
-                    {
-                        <div class="navigation__right--user" onclick="ShowPopup()">
-                            <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
-                            Đăng Nhập
+                @if ((bool?)Context.Items["LoggedIn"] == true)
+                {
+                    <div class="navigation__right--user">
+                        <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
+                        @Context.Items["username"]
+                        <input type="checkbox" id="dropdown-toggle">
+                        <label for="dropdown-toggle">
                             <ion-icon name="chevron-down-outline"></ion-icon>
-                        </div>
-                        <ion-icon name="bookmark-outline" onclick="ShowPopup()"></ion-icon>
-                    }
-                </div>
-            </nav>
+                        </label>
 
-            <div class="categoriespost">
-                <ion-icon name="chevron-back" class="btn-prev"></ion-icon>
-                <div class="card-slider">
-                    <div class="slider-wrapper">
-                        <div class="slider-card">
-                            <a class="category">#Sport</a>
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu" style="z-index: 10;">
+                            <a asp-controller="Profile" asp-action="Marked">Hồ Sơ Người Dùng</a>
+                            <a asp-controller="Home" asp-action="Create">Thêm bài báo</a>
+                            <a asp-controller="Home" asp-action="AllArticles">Cập nhật bài báo</a>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Đăng xuất</a>
                         </div>
-                        <div class="slider-card">
-                            <a class="category">#News</a>
-                        </div>
-                        <div class="slider-card">
-                            <a class="category">#Music</a>
-                        </div>
-                        <div class="slider-card">
-                            <a class="category">#Technology</a>
-                        </div>
-                        <div class="slider-card">
-                            <a class="category">#Weather</a>
-                        </div>
-                        <div class="slider-card">
-                            <a class="category">#Education</a>
-                        </div>
-                        <div class="slider-card">
-                            <a class="category">#Politico</a>
-                        </div>
-                        <div class="slider-card">
-                            <a class="category">#Financial</a>
-                        </div>
-                        <div class="slider-card">
-                            <a class="category">#Travel</a>
-                        </div>
-                        <div class="slider-card">
-                            <a class="category">#Medical</a>
-                        </div>
+                        <!-- Form đăng xuất ẩn -->
+                        <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" style="display: none;">
+                            @Html.AntiForgeryToken()
+                        </form>
+                    </div>
+                    <ion-icon name="bookmark-outline" id="book_mark_login"></ion-icon>
+                }
+                else
+                {
+                    <div class="navigation__right--user" onclick="ShowPopup()">
+                        <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
+                        Đăng Nhập
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </div>
+                    <ion-icon name="bookmark-outline" onclick="ShowPopup()"></ion-icon>
+                }
+            </div>
+        </nav>
+
+        <div class="categoriespost">
+            <ion-icon name="chevron-back" class="btn-prev"></ion-icon>
+            <div class="card-slider">
+                <div class="slider-wrapper">
+                    <div class="slider-card">
+                        <a class="category">#Sport</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#News</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#Music</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#Technology</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#Weather</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#Education</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#Politico</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#Financial</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#Travel</a>
+                    </div>
+                    <div class="slider-card">
+                        <a class="category">#Medical</a>
                     </div>
                 </div>
-                <ion-icon name="chevron-forward" class="btn-next"></ion-icon>
             </div>
-        </header>
-
-        <div class="container">
-            @RenderBody()
+            <ion-icon name="chevron-forward" class="btn-next"></ion-icon>
         </div>
+    </header>
 
-        <footer class="footer">
-            <div class="footer__left">
-                <div class="footer__left--row1">
-                    <div class="row1-col1">
-                        <div>
-                            <div class="col-header">
-                                <ion-icon name="information-outline"></ion-icon>
-                                <h3>MEGA.News</h3>
-                            </div>
-                            <p class="col-content">MEGA.News is a pioneering electronic newspaper, providing readers with the hottest and most accurate information about all areas of life. With a friendly, easy-to-use interface, MEGA.News is built to serve readers anytime, anywhere, on any device.</p>
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="footer__left">
+            <div class="footer__left--row1">
+                <div class="row1-col1">
+                    <div>
+                        <div class="col-header">
+                            <ion-icon name="information-outline"></ion-icon>
+                            <h3>MEGA.News</h3>
                         </div>
-                        <div>
-                            <div class="col-header">
-                                <ion-icon name="information-outline"></ion-icon>
-                                <h3>Newsletters</h3>
-                            </div>
-                            <div class="col-content">
-                                <input type="text" name="text-email" placeholder="Write Your Email ...">
-                                <ion-icon name="mail"></ion-icon>
-                            </div>
-                        </div>
+                        <p class="col-content">MEGA.News is a pioneering electronic newspaper, providing readers with the hottest and most accurate information about all areas of life. With a friendly, easy-to-use interface, MEGA.News is built to serve readers anytime, anywhere, on any device.</p>
                     </div>
-                    <div class="row1-col2">
-                        <div>
-                            <div class="col-header">
-                                <ion-icon name="information-outline"></ion-icon>
-                                <h3>Categories</h3>
-                            </div>
-                            <div class="col-content">
-                                <ul>
-                                    <li>Culture</li>
-                                    <li>Fashion</li>
-                                    <li>Featured</li>
-                                    <li>Food</li>
-                                    <li>Healthy Living</li>
-                                    <li>Technology</li>
-                                </ul>
-                            </div>
+                    <div>
+                        <div class="col-header">
+                            <ion-icon name="information-outline"></ion-icon>
+                            <h3>Newsletters</h3>
                         </div>
-
-                        <div>
-                            <div class="col-header">
-                                <ion-icon name="information-outline"></ion-icon>
-                                <h3>Social Network</h3>
-                            </div>
-                            <div class="col-content">
-                                <div class="insta">
-                                    <ion-icon name="logo-instagram"></ion-icon>
-                                    <p>Instagram</p>
-                                </div>
-                                <i class="fa-brands fa-twitter"></i>
-                            </div>
+                        <div class="col-content">
+                            <input type="text" name="text-email" placeholder="Write Your Email ...">
+                            <ion-icon name="mail"></ion-icon>
                         </div>
                     </div>
                 </div>
-
-                <div class="footer__left--row2">
-                    <p>Privacy Policy | Term & Conditions</p>
-                    <p> All Copyright (C) 2024 Group4</p>
-                </div>
-            </div>
-            <div class="footer__right">
-                <div class="footer__right--col1">
-                    <div class="col-header">
-                        <ion-icon name="information-outline"></ion-icon>
-                        <h3>New Comments</h3>
-                    </div>
-                    <div class="col-content">
-                        <h4>Nguyen Tuan</h4>
-                        <p>How nice does this look 😍 I feel it should be delicious, thank you</p>
-                    </div>
-                    <div class="col-content">
-                        <h4>Le Sang</h4>
-                        <p>Take a rest, i'll be cheer up you again in 2 next game go go go</p>
-                    </div>
-                    <div class="col-content">
-                        <h4>Amanda</h4>
-                        <p>you were stunning today, jan! 💗 great match 👍🏽👍🏽</p>
-                    </div>
-                    <div class="col-content">
-                        <h4>Ellsmartx</h4>
-                        <p>It was a great match today Janzi! You did great😉🇩🇪</p>
-                    </div>
-                </div>
-                <div class="footer__right--col2">
-                    <div class="col-header">
-                        <ion-icon name="information-outline"></ion-icon>
-                        <h3>Follow On Instagram</h3>
+                <div class="row1-col2">
+                    <div>
+                        <div class="col-header">
+                            <ion-icon name="information-outline"></ion-icon>
+                            <h3>Categories</h3>
+                        </div>
+                        <div class="col-content">
+                            <ul>
+                                <li>Culture</li>
+                                <li>Fashion</li>
+                                <li>Featured</li>
+                                <li>Food</li>
+                                <li>Healthy Living</li>
+                                <li>Technology</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="col-content">
-                        <img src="~/image/car.svg" alt="">
-                        <img src="~/image/dog1.svg" alt="">
-                        <img src="~/image/music.svg" alt="">
-                        <img src="~/image/food.svg" alt="">
-                        <img src="~/image/tech.svg" alt="">
-                        <img src="~/image/dance1.svg" alt="">
-                        <img src="~/image/dog2.svg" alt="">
-                        <img src="~/image/dance2.svg" alt="">
-                        <img src="~/image/sport.svg" alt="">
+                    <div>
+                        <div class="col-header">
+                            <ion-icon name="information-outline"></ion-icon>
+                            <h3>Social Network</h3>
+                        </div>
+                        <div class="col-content">
+                            <div class="insta">
+                                <ion-icon name="logo-instagram"></ion-icon>
+                                <p>Instagram</p>
+                            </div>
+                            <i class="fa-brands fa-twitter"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
 
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
-    </body>
+            <div class="footer__left--row2">
+                <p>Privacy Policy | Term & Conditions</p>
+                <p> All Copyright (C) 2024 Group4</p>
+            </div>
+        </div>
+        <div class="footer__right">
+            <div class="footer__right--col1">
+                <div class="col-header">
+                    <ion-icon name="information-outline"></ion-icon>
+                    <h3>New Comments</h3>
+                </div>
+                <div class="col-content">
+                    <h4>Nguyen Tuan</h4>
+                    <p>How nice does this look 😍 I feel it should be delicious, thank you</p>
+                </div>
+                <div class="col-content">
+                    <h4>Le Sang</h4>
+                    <p>Take a rest, i'll be cheer up you again in 2 next game go go go</p>
+                </div>
+                <div class="col-content">
+                    <h4>Amanda</h4>
+                    <p>you were stunning today, jan! 💗 great match 👍🏽👍🏽</p>
+                </div>
+                <div class="col-content">
+                    <h4>Ellsmartx</h4>
+                    <p>It was a great match today Janzi! You did great😉🇩🇪</p>
+                </div>
+            </div>
+            <div class="footer__right--col2">
+                <div class="col-header">
+                    <ion-icon name="information-outline"></ion-icon>
+                    <h3>Follow On Instagram</h3>
+                </div>
+
+                <div class="col-content">
+                    <img src="~/image/car.svg" alt="">
+                    <img src="~/image/dog1.svg" alt="">
+                    <img src="~/image/music.svg" alt="">
+                    <img src="~/image/food.svg" alt="">
+                    <img src="~/image/tech.svg" alt="">
+                    <img src="~/image/dance1.svg" alt="">
+                    <img src="~/image/dog2.svg" alt="">
+                    <img src="~/image/dance2.svg" alt="">
+                    <img src="~/image/sport.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
 </html>

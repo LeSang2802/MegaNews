@@ -26,7 +26,7 @@ namespace MegaNews.Data
                         "\r\n\r\nViệc triển khai công viên được Trung tâm Phát triển hạ tầng kỹ thuật TP Thủ Đức dự kiến hoàn thành trước Tết Nguyên đán năm nay. Toàn bộ kinh phí từ nguồn xã hội hóa." +
                         "\r\n\r\nTheo đơn vị đề xuất, với vị trí đắc địa mặt tiền sông Sài Gòn, đối diện là bến Bạch Đằng, khu biệt thự Ba Son, công viên bờ sông phía Thủ Thiêm sẽ giúp cải tạo cảnh quan cả khu vực và góp phần phát triển kinh tế, du lịch.",
                         Summary = "Đoạn bờ sông Sài Gòn phía TP Thủ Đức từ cầu Ba Son đến Thủ Thiêm dài hơn một km được đề xuất cải tạo,...",
-                        Category = "Thời sự",
+                        Category = "Sport",
                         ImageUrl = "~/image/ThoiSu1.jpg",
                         PublishedDate = DateTime.Now,
                         Author = "Gia Minh"
@@ -46,7 +46,7 @@ namespace MegaNews.Data
                         " cao gấp rưỡi so với tỷ lệ tương tự ở nhóm nhân sự chủ động thôi việc. Trong khi đó, nhóm chủ động thường chuẩn bị kỹ lưỡng trước khi rời đi, có mối quan hệ nghề nghiệp nên ít đối mặt với thách thức hơn." +
                         " Tỷ lệ tìm được việc mới phù hợp và hài lòng ở nhóm này chiếm trên 24% và 17,5%.\r\n\r\nNhiều nhân sự IT vì thế sẵn sàng đảm nhận thêm khối lượng công việc hoặc đa nhiệm hơn để có được việc mới. \"Con số tăng 10% so với năm trước, cho thấy sự cạnh tranh trên thị trường việc làm ngày càng gay gắt\", báo cáo nhận định.",
                         Summary = "Gần nửa trong số 500 doanh nghiệp được khảo sát sẵn sàng trả lương nhân sự mảng Al cao hơn vị trí khác 10-20%; 18% công ty trả cao hơn 20-50%...",
-                        Category = "Thời sự",
+                        Category = "News",
                         ImageUrl = "~/image/ThoiSu2.jpg",
                         PublishedDate = DateTime.Now,
                         Author = "Hồng Chiêu"
@@ -61,7 +61,7 @@ namespace MegaNews.Data
                         "\r\n\r\nAlba cũng góp công trong bàn này với pha đi bóng ở cánh trái trước khi chuyền để Diego Gomez kiến tạo. Pha dứt điểm một chạm của Suarez đưa bóng đi chìm, qua giữa hai chân của Guzan.Với tâm lý hưng phấn, Miami tiếp tục dồn ép và Messi đáng ra đã nhân đôi cách biệt nếu cú sút một chạm từ ngoài cấm địa của anh không bị Guzan cản phá." +
                         "\r\n\r\nGuzan sau đó tiếp tục từ chối cú sút về góc cao của Messi, trước khi trung vệ David Martinez khiến khung thành đội khách rung chuyển với cú đánh đầu dội cột dọc. Bản thân Messi sau đó cũng có một lần dứt điểm trúng khung gỗ ở cự ly gần.\r\n\r\n",
                         Summary = "Lionel Messi kiến tạo để Jordi Alba ghi bàn ấn định chiến thắng 2-1 cho Inter Miami trước Atlata United ở trận ra quân MLS Cup playoffs....",
-                        Category = "Thể thao",
+                        Category = "Sport",
                         ImageUrl = "~/image/TheThao1.png",
                         PublishedDate = DateTime.Now,
                         Author = "Quang Huy"

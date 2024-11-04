@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MegaNews.Models.ArticleModel>
+
+@foreach (var article in Model)
+{
+    <div class="col-md-4 mb-4 article-item" data-id="@article.Id">
+        <div class="card">
+            <img src="@Url.Content(article.ImageUrl)" class="card-img-top" alt="@article.Title">
+            <div class="card-body">
+                <h5 class="card-title">@article.Title</h5>
+                <p class="card-text">@article.Summary</p>
+                <a href="@Url.Action("Details", "Home", new { id = article.Id })" class="btn btn-primary">Đọc tiếp</a>
+            </div>
+        </div>
+    </div>
+}
