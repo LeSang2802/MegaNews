@@ -4,6 +4,8 @@ const sliderWrapper = document.querySelector('.slider-wrapper');
 const cards = document.querySelectorAll('.slider-card');
 const popup = document.getElementById('popup');
 const overlay = document.getElementById('overlay');
+const postSearch = document.getElementById('text-search');
+const btnSearch = document.getElementById('btn_search');
 
 
 /*Popup SignIn - SignUp*/
@@ -19,6 +21,15 @@ function HidePopup() {
     overlay.style.display = 'none';
     document.body.classList.remove('no-scroll');
 }
+
+// News Search
+btnSearch.addEventListener('click', () => {
+    if (postSearch.value != null) {
+        var textSearch = postSearch.value.trim();
+
+        window.location.href = `/Category/PostSearch?search=${encodeURIComponent(textSearch)}`
+    }
+});
 
 
 /* Card Slider for Categories Post*/

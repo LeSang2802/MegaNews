@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MegaNews.Models.ArticleModel>
+@{
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link href="~/css/categories.css" rel="stylesheet" />
+}
+
+<h2 class="category_heading">Search: @ViewBag.TextSearch</h2>
+
+<div class="category_list_post">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var article in Model)
+        {
+            <div class="category_post">
+                <img src="@Url.Content(article.ImageUrl)" alt="Image Post" class="image_post" />
+                <h5 class="title_post">@article.Title</h5>
+                <p class="content_post">@article.Content</p>
+
+                <div class="category_post_footer">
+                    <div class="author_date">
+                        <img src="~/image/user-avatar.svg" alt="Alternate Text" class="avatar_author" />
+                        <div>
+                            <div style="font-weight:bold;">@article.Author</div>
+                            <div>@article.PublishedDate.ToString("dd/MM/yyyy")</div>
+                        </div>
+                    </div>
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h2 class="notification_nopost">Không tìm thấy bài báo nào phù hợp với yêu cầu.</h2>
+    }
+</div>
