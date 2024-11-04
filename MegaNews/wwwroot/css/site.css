@@ -262,7 +262,7 @@ header > .categoriespost > ion-icon{
     z-index: 1;
 }
 
-.slider-card > a{
+.slider-card > .category{
     text-decoration: none;
     position: relative;
     color: white;

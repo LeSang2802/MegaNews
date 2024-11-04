@@ -2,7 +2,9 @@
 using MegaNews.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System.Security.Claims;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MegaNews.Controllers
 {
@@ -40,40 +42,11 @@ namespace MegaNews.Controllers
             return View(account); 
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserModel model, IFormFile fileImage)
+/*        [HttpPost]
+        public async Task<IActionResult> UpdateUser(UpdateUserModel model)
         {
-            var email = User.FindFirstValue(ClaimTypes.Email);
-            var user = await _dbContext.tblAccount.FirstOrDefaultAsync(a => a.Email == email);
-
-            if (user != null)
-            {
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.UserName = model.UserName;
-
-                if (fileImage != null && fileImage.Length > 0)
-                {
-                    var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "image");
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + fileImage.FileName;
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await fileImage.CopyToAsync(fileStream);
-                    }
-
-                    user.ImageUrl = Path.Combine("~image", uniqueFileName);
-                }
-
-                await _dbContext.SaveChangesAsync();
-                return Json(new { success = true, message = "User information updated successfully." });
-            }
-
-            return Json(new { success = false, message = "Failed to update user information." });
         }
-
+*/
 
         [HttpGet]
         public IActionResult SendPost()

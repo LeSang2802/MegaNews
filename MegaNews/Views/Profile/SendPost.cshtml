@@ -1,5 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "_Layout";
 }
+
+@section Styles {
+    <link href="~/css/profile_sendpost.css" rel="stylesheet" />
+}
+
+<div class="profile__heading">
+    <div class="profile__heading-user">
+        <img src="~/image/user-avatar.svg" alt="User Avatar" />
+        UserName
+    </div>
+
+    <div class="profile__heading--page">
+        <a class="marked" asp-controller="Profile" asp-action="Marked">Marked</a>
+        <a class="sendpost" asp-controller="Profile" asp-action="SendPost">Send Post</a>
+        <a class="post" asp-controller="Profile" asp-action="Posts">Posts</a>
+    </div>
+
+    <a class="profile__heading--edit" asp-controller="Profile" asp-action="EditProfile">
+        <i class="fa-solid fa-user-pen"></i>
+        Edit Profile
+    </a>
+</div>
+

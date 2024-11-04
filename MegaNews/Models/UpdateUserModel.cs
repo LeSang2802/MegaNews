@@ -10,5 +10,7 @@ namespace MegaNews.Models
         public string? FirstName { get; set; }
 
         public string? LastName { get; set; }
+
+        public IFormFile? fileImage { get; set; }
     }
 }

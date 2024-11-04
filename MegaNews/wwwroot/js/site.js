@@ -5,6 +5,7 @@ const cards = document.querySelectorAll('.slider-card');
 const popup = document.getElementById('popup');
 const overlay = document.getElementById('overlay');
 
+
 /*Popup SignIn - SignUp*/
 
 function ShowPopup() {
@@ -47,3 +48,14 @@ nextButton.addEventListener('click', () => {
 });
 
 updateSlider();
+
+//Categories Articles
+document.addEventListener('DOMContentLoaded', function () {
+    cards.forEach(card => {
+        card.addEventListener('click', function () {
+            const category = this.querySelector('.category').textContent.trim().substring(1);
+
+            window.location.href = `/Category/Index?category=${encodeURIComponent(category)}`;
+        });
+    });
+});
