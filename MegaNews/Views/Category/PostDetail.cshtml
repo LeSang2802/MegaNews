@@ -1,0 +1,28 @@
+﻿@model MegaNews.Models.ArticleModel
+
+@section Scripts{
+    <link rel="stylesheet" href="~/css/post_detail.css" />
+}
+
+<div class="postdetail_layout">
+    <h2>@Model.Title</h2>
+    <img src="@Url.Content(Model.ImageUrl)" alt="Image News" />
+    <div>
+        <div class="post_date">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <div>@Model.PublishedDate.ToString("dd/MM/yyyy")</div>
+        </div>
+
+        <div class="postcomments">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+            <div>Comments: 35</div>
+        </div>
+
+        <div class="category">
+            <ion-icon name="folder-outline"></ion-icon>
+            <div>Category: @Model.Category</div>
+        </div>
+    </div>
+
+    <p>@Html.Raw(Model.Content.Replace("\r\n", "<br />"))</p>
+</div>

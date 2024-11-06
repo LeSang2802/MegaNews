@@ -14,7 +14,7 @@
     {
         foreach(var article in Model)
         {
-            <div class="category_post">
+            <div class="category_post" onclick="location.href='@Url.Action("PostDetail", "Category", new{id = article.Id})';">
                 <img src="@Url.Content(article.ImageUrl)" alt="Image Post" class="image_post"/>
                 <h5 class="title_post">@article.Title</h5>
                 <p class="content_post">@article.Content</p>
@@ -34,6 +34,6 @@
     }
     else
     {
-        <h2 class="notification_nopost">Hiện tại không có bài viết nài trong danh mục này.</h2>
+        <h2 class="notification_nopost">Hiện tại không có bài báo nào trong danh mục này.</h2>
     }
 </div>

@@ -47,5 +47,16 @@ namespace MegaNews.Controllers
 
             return View(articles);
         }
+
+        public async Task<IActionResult> PostDetail(int id)
+        {
+            var article = await _dbContext.tblArticle.FirstOrDefaultAsync(a => a.Id == id);
+            if (article == null)
+            {
+                return NotFound();
+            }
+
+            return View(article);
+        }
     }
 }

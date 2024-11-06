@@ -62,31 +62,29 @@
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </label>
 
-                        <!-- Dropdown menu -->
-                        <div class="dropdown-menu" style="z-index: 10;">
-                            <a asp-controller="Profile" asp-action="Marked">Hồ Sơ Người Dùng</a>
-                            <a asp-controller="Home" asp-action="Create">Thêm bài báo</a>
-                            <a asp-controller="Home" asp-action="AllArticles">Cập nhật bài báo</a>
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Đăng xuất</a>
+                            <!-- Dropdown menu -->
+                            <div class="dropdown-menu" style="z-index: 10;">
+                                <a asp-controller="Profile" asp-action="Marked">Hồ Sơ Người Dùng</a>
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Đăng xuất</a>
+                            </div>
+                            <!-- Form đăng xuất ẩn -->
+                            <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" style="display: none;">
+                                @Html.AntiForgeryToken()
+                            </form>
                         </div>
-                        <!-- Form đăng xuất ẩn -->
-                        <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" style="display: none;">
-                            @Html.AntiForgeryToken()
-                        </form>
-                    </div>
-                    <ion-icon name="bookmark-outline" id="book_mark_login"></ion-icon>
-                }
-                else
-                {
-                    <div class="navigation__right--user" onclick="ShowPopup()">
-                        <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
-                        Đăng Nhập
-                        <ion-icon name="chevron-down-outline"></ion-icon>
-                    </div>
-                    <ion-icon name="bookmark-outline" onclick="ShowPopup()"></ion-icon>
-                }
-            </div>
-        </nav>
+                        <ion-icon name="bookmark-outline" id="book_mark_login"></ion-icon>
+                    }
+                    else
+                    {
+                        <div class="navigation__right--user" onclick="ShowPopup()">
+                            <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
+                            Đăng Nhập
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </div>
+                        <ion-icon name="bookmark-outline" onclick="ShowPopup()"></ion-icon>
+                    }
+                </div>
+            </nav>
 
         <div class="categoriespost">
             <ion-icon name="chevron-back" class="btn-prev"></ion-icon>
