@@ -2,9 +2,7 @@
 using MegaNews.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using System.Security.Claims;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MegaNews.Controllers
 {
@@ -12,7 +10,6 @@ namespace MegaNews.Controllers
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IWebHostEnvironment _webHostEnvironment;
-
 
         public ProfileController(ApplicationDbContext dbContext, IWebHostEnvironment webHostEnvironment)
         {
@@ -23,30 +20,72 @@ namespace MegaNews.Controllers
         [HttpGet] 
         public IActionResult Marked()
         {
-            return View();
+            var email = User.FindFirstValue(ClaimTypes.Email);
+
+            //Get account from database by email
+            var account = _dbContext.tblAccount.FirstOrDefault(a => a.Email == email);
+
+            if (string.IsNullOrEmpty(account.ImageUrl))
+            {
+                account.ImageUrl = "~/image/user-avatar.svg";
+            }
+
+            return View(account);
         }
 
         [HttpGet]
         public IActionResult EditProfile()
         {
             //Get information from Claims
-            var username = User.FindFirstValue(ClaimTypes.Name);
             var email = User.FindFirstValue(ClaimTypes.Email);
-
-            ViewBag.Username = username;
-            ViewBag.Email = email;
 
             //Get account from database by email
             var account = _dbContext.tblAccount.FirstOrDefault(a => a.Email == email);
-            
+
+            if (string.IsNullOrEmpty(account.ImageUrl))
+            {
+                account.ImageUrl = "~/image/image_Preview.svg";
+            }
+
             return View(account); 
         }
 
-/*        [HttpPost]
-        public async Task<IActionResult> UpdateUser(UpdateUserModel model)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateUser(UpdataUserViewModel model)
         {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var account = await _dbContext.tblAccount.FirstOrDefaultAsync(a => a.Email == email);
+
+            if (account != null) {
+                account.UserName = model.UserName;
+                account.FirstName = model.FirstName;
+                account.LastName = model.LastName;
+
+                if (model.fileInput != null && model.fileInput.Length > 0)
+                {
+                    var fileName = Path.GetFileName(model.fileInput.FileName);
+                    var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "image", fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.fileInput.CopyToAsync(stream);
+                    }
+
+                    account.ImageUrl = "~/image/" + fileName;
+                }
+
+                _dbContext.tblAccount.Update(account);
+                await _dbContext.SaveChangesAsync();
+
+                return Json(new { success = true, message = "User information has been updated successfully." });
+            }
+            else
+            {
+                return Json(new { success = true, message = "User information update failed" });
+            }
         }
-*/
+
 
         [HttpGet]
         public IActionResult SendPost()

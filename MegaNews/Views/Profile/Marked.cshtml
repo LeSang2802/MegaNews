@@ -1,14 +1,15 @@
-﻿@{
+﻿@model MegaNews.Models.AccountModel
+@{
     Layout = "_Layout";
 }
 
 @section Styles{
-    <link href="~/css/profile_marked.css" rel="stylesheet" />
+    <link href="~/css/profile_marked.css" rel="stylesheet" asp-append-version="true"/>
 }
 
 <div class="profile__heading">
     <div class="profile__heading-user">
-        <img src="~/image/user-avatar.svg" alt="User Avatar" />
+        <img src="@Url.Content(Model.ImageUrl)" alt="User Avatar" class="avatar_user"/>
         UserName
     </div>
 

@@ -2,7 +2,7 @@
 
 namespace MegaNews.Models
 {
-    public class UpdateUserModel
+    public class UpdataUserViewModel
     {
         [Required]
         public required string UserName { get; set; }
@@ -11,6 +11,6 @@ namespace MegaNews.Models
 
         public string? LastName { get; set; }
 
-        public IFormFile? fileImage { get; set; }
+        public IFormFile? fileInput { get; set; }
     }
 }

@@ -18,79 +18,125 @@
     line-height: 1.5;
 }
 
-.infor_personal{
+.editprofile__container {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: 3fr 1fr;
     gap: 30px;
 }
 
-.infor_personal > div > input{ 
-    border: none;
-    outline:none;
-    padding: 10px;
-    background-color: var(--gray-bold);
-    border-radius: 8px;
-    width: 100%;
-}
-
-.feild_avatar {
-    grid-column: 3/4;
-    grid-row: 1/3;
-    width: 100%;
-    border-right: 2px solid var(--gray-bold);
-    padding: 10px;
-}
-
-.feild_changepass{
-    grid-column: 4/5;
-    grid-row: 1/3;
-    display: grid;
-    grid-template-rows: repeat(4,1fr);
-    gap: 20px;
-}
-
-.feild_avatar--layout{
-    height: 80%;
+.infor_personal{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    grid-column: 1/2;
+    gap: 60px;
+    width: 100%;
+    border-right: 5px solid var(--gray);
 }
 
-.feild_avatar--layout > input{
-    display: none;
-}
-
-.feild_avatar--layout > #imagePreview{
-    display: none;
-    max-width: 100px;
-    max-height: 100px;
-}
-
-.feild_avatar--layout > .file-label{
-    padding: 10px;
-    border-radius: var(--border-radius);
-    background-color: var(--gray);
-    display: flex;
-    align-items: center;
-    font-weight: 400;
-    gap: 10px;
-}
-
-.btn_layout{
-    margin-top: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.btn_layout > div{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-    color: white;
-    border-radius: var(--border-radius);
+.editprofile__container > div > button {
+    border: none;
     padding: 10px 20px;
     background-color: var(--red);
+    color: white;
+    font-size: 1.2rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.infor_personal > button > ion-icon{
+    font-size: 1.5rem;
+}
+
+.infor_personal__layout{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
+    gap: 30px;
+}
+
+.feild_avatar{
+    grid-column: 3/4;
+    grid-row: 1/3;
+    margin-right: 5px;
+}
+
+.feild_avatar > .feild_avatar--layout{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    background-color: var(--gray);
+    border-radius: var(--border-radius);
+    padding: 20px 0px;
+    position: relative;
+}
+
+.feild_avatar > .feild_avatar--layout > input{
+    display: none;
+}
+
+.feild_avatar > .feild_avatar--layout > label{
+    padding: 10px;
+    background-color: var(--gray-bold);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.feild_avatar > .feild_avatar--layout > img{
+    width: 60px;
+    height: 60px;
+}
+
+.feild_avatar > .feild_avatar--layout > ion-icon{
+    position: absolute;
+    content: '';
+    top: 4%;
+    right: 35%;
+}
+
+.infor_personal__layout > div > input{
+    margin-top: 5px;
+    border: none;
+    outline: none;
+    padding: 15px 10px;
+    background-color: var(--gray);
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.feild_changepass__layout{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px
+}
+
+.feild_changepass {
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.feild_changepass__layout > input {
+    margin-top: 5px;
+    border: none;
+    outline: none;
+    padding: 15px 10px;
+    background-color: var(--gray);
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.feild_changepass > button {
+    margin-top: 40px;
 }

@@ -55,7 +55,7 @@
                 @if ((bool?)Context.Items["LoggedIn"] == true)
                 {
                     <div class="navigation__right--user">
-                        <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
+                        <img src="@Context.Items["ImageUrl"]" alt="Avatar" id="avatar">
                         @Context.Items["username"]
                         <input type="checkbox" id="dropdown-toggle">
                         <label for="dropdown-toggle">
@@ -73,16 +73,16 @@
                             </form>
                         </div>
                         <ion-icon name="bookmark-outline" id="book_mark_login"></ion-icon>
-                    }
-                    else
-                    {
-                        <div class="navigation__right--user" onclick="ShowPopup()">
-                            <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
-                            Đăng Nhập
-                            <ion-icon name="chevron-down-outline"></ion-icon>
-                        </div>
-                        <ion-icon name="bookmark-outline" onclick="ShowPopup()"></ion-icon>
-                    }
+                }
+                else
+                {
+                    <div class="navigation__right--user" onclick="ShowPopup()">
+                        <img src="~/image/user-avatar.svg" alt="Avatar" id="avatar">
+                        Đăng Nhập
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </div>
+                    <ion-icon name="bookmark-outline" onclick="ShowPopup()"></ion-icon>
+                }
                 </div>
             </nav>
 

@@ -5,58 +5,63 @@
 @model MegaNews.Models.AccountModel
 
 @section Styles{
-    <link href="~/css/profile_edit.css" rel="stylesheet" />
+    <link href="~/css/profile_edit.css" rel="stylesheet"  asp-append-version="true"/>
 }
 
 <div class="editprofile__container">
     <div class="infor_personal">
-        <div class="feild__firstname">
-            <h5>FirstName</h5>
-            <input type="text" name="firstname" id="firstname"  value="@Model.FirstName"/>
-        </div>
-        <div class="feild__lastname">
-            <h5>LastName</h5>
-            <input type="text" name="lastname" id="lastname"  value="@Model.LastName"/>
-        </div>
-        <div class="feild_email">
-            <h5>Email</h5>
-            <input type="email" name="email" id="email" value="@ViewBag.Email" readonly/>
-        </div>
-        <div class="feild_username">
-            <h5>User Name</h5>
-            <input type="text" name="username" id="username" value="@ViewBag.Username" />
-        </div>
-        <div class="feild_avatar">
-            <h5>Add Image</h5>
-            <div class="feild_avatar--layout" >
-                <img id="imagePreview" src="" alt="Image Preview"/>
-                <p>Drop Image Here, Paste Or</p>
-                <input type="file" id="fileInput" accept="image/*"/>
-                <label for="fileInput" class="file-label">
-                    <ion-icon name="add-outline"></ion-icon>
-                    Select
-                </label>
+        <div class="infor_personal__layout">
+            @Html.AntiForgeryToken()
+            <div class="feild__firstname">
+                <h5>FirstName</h5>
+                <input type="text" name="firstname" id="firstname" value="@Model.FirstName" />
+            </div>
+            <div class="feild__lastname">
+                <h5>LastName</h5>
+                <input type="text" name="lastname" id="lastname" value="@Model.LastName" />
+            </div>
+            <div class="feild_email">
+                <h5>Email</h5>
+                <input type="email" name="email" id="email" value="@Model.Email" readonly />
+            </div>
+            <div class="feild_username">
+                <h5>User Name</h5>
+                <input type="text" name="username" id="username" value="@Model.UserName" />
+            </div>
+            <div class="feild_avatar">
+                <h5>Add Image</h5>
+                <div class="feild_avatar--layout">
+                    <img id="imagePreview" src="@Url.Content(Model.ImageUrl)" alt="Image Preview" />
+                    <div>Drop Image Here, Paste Or</div>
+                    <input type="file" name="fileInput" id="fileInput" accept="image/*" />
+                    <ion-icon name="close-circle-outline" id="delete_file"></ion-icon>
+                    <label for="fileInput" class="file-label">
+                        <ion-icon name="add-outline"></ion-icon>
+                        Select
+                    </label>
+                </div>
             </div>
         </div>
 
-        <div class="feild_changepass">
+        <button id="btn_save" type="button">
+            <ion-icon name="save-outline"></ion-icon>
+            Save
+        </button>
+    </div>
+
+    <div class="feild_changepass">
+        <div class="feild_changepass__layout">
+            @Html.AntiForgeryToken()
             <h5>Change Password</h5>
             <input type="password" name="oldpassword" placeholder="Old Password" />
             <input type="password" name="newpassword" placeholder="New Password" />
             <input type="password" name="confirmpassword" placeholder="Confirm Password" />
         </div>
-    </div>
 
-    <div class="btn_layout">
-        <div id="btn_save">
-            <ion-icon name="save-outline"></ion-icon>
-            Save
-        </div>
-
-        <div id="btn_change">
+        <button id="btn_change" type="button">
             <ion-icon name="sync-outline"></ion-icon>
             Change
-        </div>
+        </button>
     </div>
 </div>
 

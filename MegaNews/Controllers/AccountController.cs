@@ -15,6 +15,7 @@ namespace MegaNews.Controllers
         private PasswordHasher<AccountModel> _passwordHasher;
 
         private const string Session_LoggedIn = "LoggedIn";
+        private const string Claim_Image = "ImageUrl";
 
         public AccountController(ApplicationDbContext dbContext)
         {
@@ -71,7 +72,8 @@ namespace MegaNews.Controllers
                         var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.Name, account.UserName),
-                            new Claim(ClaimTypes.Email, account.Email)
+                            new Claim(ClaimTypes.Email, account.Email),
+                            new Claim(Claim_Image, @Url.Content(account.ImageUrl) ?? @Url.Content("~/image/user-avatar.svg"))
                         };
 
                         //Create ClaimsIdentity and ClaimsPrincipal
